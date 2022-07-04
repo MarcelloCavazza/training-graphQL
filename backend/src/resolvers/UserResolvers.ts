@@ -1,5 +1,6 @@
-import { Mutation, Query, Resolver } from "type-graphql";
+import { Arg, Mutation, Query, Resolver } from "type-graphql";
 import { User } from "../models/User";
+import crypto from "crypto";
 
 @Resolver()
 export class UserResolver {
@@ -11,8 +12,8 @@ export class UserResolver {
   }
 
   @Mutation(() => User)
-  async createUser() {
-    const user = { id: "1", name: "Marcello" };
+  async createUser(@Arg("name") name: string) {
+    const user = { id: crypto.randomUUID(), name };
     this.data.push(user);
     return user;
   }

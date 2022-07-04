@@ -3,6 +3,7 @@ import { buildSchema } from "type-graphql";
 import path from "path";
 import { ApolloServer } from "apollo-server";
 import { UserResolver } from "./src/resolvers/UserResolvers";
+
 async function main() {
   const schema = await buildSchema({
     resolvers: [UserResolver],
